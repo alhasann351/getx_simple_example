@@ -23,6 +23,24 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              color: Colors.blue,
+              height: 200,
+              width: 200,
+            ),
+            Slider(
+              activeColor: Colors.blue,
+              inactiveColor: Colors.grey,
+              value: 0.1,
+              onChanged: (value) {},
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
