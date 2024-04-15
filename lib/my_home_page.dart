@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getx_simple_example/example_controller.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -8,6 +10,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final ExampleController exampleController = Get.put(ExampleController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,16 +31,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              color: Colors.blue,
-              height: 200,
-              width: 200,
+            Obx(
+              () => Container(
+                color: Colors.blue.withOpacity(exampleController.opacity.value),
+                height: 200,
+                width: 200,
+              ),
             ),
-            Slider(
-              activeColor: Colors.blue,
-              inactiveColor: Colors.grey,
-              value: 0.1,
-              onChanged: (value) {},
+            Obx(
+              () => Slider(
+                activeColor: Colors.blue,
+                inactiveColor: Colors.grey,
+                value: exampleController.opacity.value,
+                onChanged: (value) {
+                  exampleController.setOpacityValue(value);
+                },
+              ),
             ),
           ],
         ),
